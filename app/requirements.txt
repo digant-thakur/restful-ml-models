@@ -1,0 +1,6 @@
+Flask-RESTful
+Flask-JWT
+pandas
+sklearn
+joblib
+gunicorn
