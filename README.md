@@ -25,7 +25,7 @@ Deploy Production Ready ML Models as REST API on Docker and Kuberenetes. <br />
 
 ### HTTPS - Bring Your Own Certicate
 - Configured to use TLS v1.2 and v1.3
-- You can replace app/config/nginx/cert.crt and key.key with your own certificate and key.
+- You can replace config/nginx/cert.crt and key.key with your own certificate and key.
 
 ### 
 
