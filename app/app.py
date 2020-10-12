@@ -34,7 +34,7 @@ mymodel = {}
 
 # Load the model in memory before the user request for performance gains
 @app.before_first_request
-def load_model():
+def load_model_into_memory():
     global mymodel
     mymodel['boston_housing'] = joblib.load('models/boston_model.pkl')
     app.logger.info("Loaded Model into Memory")
