@@ -1,16 +1,17 @@
 FROM ubuntu:latest
 
-# INSTALL  NGINX
+# INSTALL  NGINX AND REMOVE DEFAULT CONF 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
          nginx \    
          && rm -rf /var/lib/apt/lists/* 
+RUN rm -f /etc/nginx/sites-enabled/default
 
 #INSTALL SUPERVISOR DAEMON
 RUN apt-get -y update && apt-get -y install supervisor && \
   mkdir -p /var/log/supervisor && \
   mkdir -p /etc/supervisor/conf.d
 
-# INSTALL CONDA AND PYTHON
+# INSTALL CONDA AND PYTHON 
 ARG CONDA_VERSION=4.7.12
 ARG PYTHON_VERSION=3.7
 ENV PATH /opt/miniconda/bin:$PATH
@@ -21,13 +22,14 @@ RUN apt-get install -y wget bzip2 && \
 # CREATE USER
 RUN useradd --create-home mluser
 WORKDIR /home/mluser
+USER mluser
 
 # SETUP MINICONDA
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p ~/miniconda && \
     rm ~/miniconda.sh && \
     ~/miniconda/bin/conda clean -tipsy
-ENV PATH "/root/miniconda/bin:${PATH}"
+ENV PATH "/home/mluser/miniconda/bin:${PATH}"
 RUN conda install -y conda=${CONDA_VERSION} python=${PYTHON_VERSION} && \
     conda clean -aqy && \
     rm -rf ~/miniconda/pkgs
@@ -39,15 +41,15 @@ RUN pip install -r app/requirements.txt
 RUN conda install --yes --file app/conda-requirements.txt
 
 # PLACE CONFIG FILES FOR NGINX AND SUPERVISORD
-COPY app/config/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY app/config/nginx/mlapp.conf app/config/nginx/mlapp-tls.conf /etc/nginx/sites-enabled/
-COPY app/config/nginx/ssl.conf /app/config/nginx/common.conf app/config/nginx/common_location.conf /etc/nginx/
-COPY app/config/nginx/cert.crt  app/config/nginx/key.key /etc/ssl/private/
-
+COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY config/nginx/mlapp.conf config/nginx/mlapp-tls.conf /etc/nginx/sites-enabled/
+COPY config/nginx/ssl.conf /config/nginx/common.conf config/nginx/common_location.conf /etc/nginx/
+COPY config/nginx/cert.crt  config/nginx/key.key config/nginx/dhparams.pem /etc/ssl/private/
 
 # PLACE MODEL, CODE and RUN AS REST API
-COPY app/myjwt/ app/models/ app/app.py app/wsgi.py /home/mluser/app/
+COPY app/ /home/mluser/app/
 COPY entrypoint.sh /home/mluser/
-ENTRYPOINT ["/home/mluser/entrypoint.sh"]
-CMD ["-ssl", "true", "-timeout", "60"]
 
+USER root
+ENTRYPOINT ["/home/mluser/entrypoint.sh"]
+CMD ["-https", "true", "-timeout", "60"]

@@ -1,4 +1,4 @@
-Flask-RESTful
+Flask   
 Flask-JWT
 pandas
 sklearn
