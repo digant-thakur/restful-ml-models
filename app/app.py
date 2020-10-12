@@ -75,7 +75,3 @@ def predict():
 
     # 6. Return Response (as Dict), and appropriate HTTP STATUS Code
     return response, 200
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
