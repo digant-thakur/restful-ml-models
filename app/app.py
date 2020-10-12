@@ -8,7 +8,9 @@ from flask_jwt import JWT, jwt_required
 import pandas as pd
 import joblib
 import time
+import datetime
 import logging
+from sklearn.preprocessing import StandardScaler 
 
 # Import Custom JQT In-Mem Implementation
 from security import authenticate, identity
@@ -17,6 +19,7 @@ from security import authenticate, identity
 app = Flask(__name__)
 app.secret_key = "your-secret-key"
 jwt = JWT(app, authenticate, identity)
+app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(days=1)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 ######## OPTIONAL - HELPER CODE FOR LOGGING ########
@@ -43,10 +46,10 @@ def teardown_request(exception=None):
 
 ######## YOUR CODE STARTS HERE ########
 
-# 1. Define global Variable to pre-load model
+# 1. Define global Variable to pre-load models into memory
 mymodel = {}
 
-# 2. Load the model in memory before the user request for performance gains
+# 2. Load the model in memory before the user request to avoid re-loading at each request
 @app.before_first_request
 def load_model_into_memory():
     global mymodel
@@ -61,7 +64,6 @@ def predict():
     request_json = request.get_json(force=True)
 
     # 4. Preprocess the user data
-    from sklearn.preprocessing import StandardScaler 
     scaler = StandardScaler()
     df = pd.DataFrame(request_json, index = [0])
     scaler.fit(df)
