@@ -17,16 +17,15 @@
      >cp my_model.pkl restful-ml-models/models
 2. Add required libraries in requirements.txt (PIP) and conda-requirements.txt.  
 3. Load the model and predict the output in app.py.
-    > #app.py
-    ........
-    global mymodel
-    mymodel['my_model_name'] = joblib.load('models/my_model.pkl')
-    ........
-    ........
-    prediction = mymodel['my_model_name'].predict(input)
-    response = {"Precition": prediction}
-    return response
-    ........
+    > #app.py<br />
+    ........<br />
+    global mymodel<br />
+    mymodel['my_model_name'] = joblib.load('models/my_model.pkl')<br />
+    ........<br />
+    prediction = mymodel['my_model_name'].predict(input)<br />
+    response = {"Precition": prediction}<br />
+    return response<br />
+    ........<br />
 4. **BONUS**: Dockerfile Automatically adds - **Logging, JWT Authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS)** 
 5. Run
     > docker-compose up
