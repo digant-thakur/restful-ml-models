@@ -22,7 +22,7 @@
     > docker-compose up
 6. Test (Postman also works)
     1. Health check on **Path**: `/`
-    > curl -k https://localhost:32768/
+        > curl -k https://localhost:32768/
     2. Get JWT auth token at **Path**: `/auth`. **Method**: `POST`. **Default credentials (in Body)**: `{"username": "user", "password": "pass"}`.
         > curl -k --header "Content-Type: application/json" <br />
             --request POST <br />
