@@ -1,8 +1,0 @@
-# DONT REMOVE Flask, Flask-JWT, gunicorn
-Flask   
-Flask-JWT
-gunicorn
-
-pandas
-sklearn
-joblib

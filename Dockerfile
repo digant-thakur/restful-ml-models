@@ -24,7 +24,7 @@ RUN useradd --create-home mluser
 WORKDIR /home/mluser
 USER mluser
 
-# SETUP MINICONDA
+# SETUP MINICONDA ENVIRONMENT
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p ~/miniconda && \
     rm ~/miniconda.sh && \
@@ -33,6 +33,7 @@ ENV PATH "/home/mluser/miniconda/bin:${PATH}"
 RUN conda install -y conda=${CONDA_VERSION} python=${PYTHON_VERSION} && \
     conda clean -aqy && \
     rm -rf ~/miniconda/pkgs
+RUN pip install Flask Flask-JWT gunicorn
 
 # INSTALL APP DEPENDENCY
 COPY app/requirements.txt /home/mluser/app/requirements.txt

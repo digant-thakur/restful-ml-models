@@ -1,5 +1,4 @@
-# Deploy AI / ML Models as REST API on a Production Ready Docker Container
-Deploy Production Ready ML Models as REST API on Docker and Kuberenetes. <br /> 
+# Deploy ML Models as REST API on a Production Ready Docker Container
 **Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kuberenetes.
 
 ## Features
@@ -12,15 +11,30 @@ Deploy Production Ready ML Models as REST API on Docker and Kuberenetes. <br />
 
 ## How to Use
 1. Copy your models into models directory.
-    - >git clone https://github.com/digant-thakur/restful-ml-models
-    - >cp my_model1.pkl restful-ml-models/models
+    1. Clone Repo
+     >git clone https://github.com/digant-thakur/restful-ml-models
+    2. Copy Model
+     >cp my_model.pkl restful-ml-models/models
 2. Add required libraries in requirements.txt (PIP) and conda-requirements.txt.  
 3. Load the model and predict the output in app.py.
+    > #app.py
+    ........
+    global mymodel
+    mymodel['my_model_name'] = joblib.load('models/my_model.pkl')
+    ........
+    ........
+    prediction = mymodel['my_model_name'].predict(input)
+    response = {"Precition": prediction}
+    return response
+    ........
 4. **BONUS**: Dockerfile Automatically adds - **Logging, JWT Authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS)** 
 5. Run
-    - > docker-compose up
-6. Test (Postman works well)
-    - > curl -X POST -d '{"param": "value"}' http://localhost:32768/predict
+    > docker-compose up
+6. Test (Postman also works)
+    1. Health Check
+    > curl localhost:32768/ 
+    2. Predict
+    > curl -X POST -d '{"param": "value"}' http://localhost:32768/predict
 
 ## Design
 - ### API Design
