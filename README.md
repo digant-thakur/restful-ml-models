@@ -19,11 +19,11 @@ Deploy Production Ready ML Models as REST API on Docker and Kuberenetes. <br />
 
 ## Design
 - ### API Design
-    - [System Design](illustrations/system_design#center) 
+[System Design](illustrations/system_design.png#center) 
 
 - ### Docker Layers 
     - User only manages Source Code + Dependencies (Light Gray).<br /> Other components are automatically added/managed by dockerfile.
-    - [Dockerfile Layering](illustrations/container_design.png#center)
+[Dockerfile Layering](illustrations/container_design.png#center)
 
 
 ## Options
