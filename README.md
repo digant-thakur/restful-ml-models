@@ -12,10 +12,15 @@ Deploy Production Ready ML Models as REST API on Docker and Kuberenetes. <br />
 
 ## How to Use
 1. Copy your models into models directory.
-2. Add required libraries in requirements.txt (PIP) and conda-requirements.txt.
+    - >git clone https://github.com/digant-thakur/restful-ml-models
+    - >cp my_model1.pkl restful-ml-models/models
+2. Add required libraries in requirements.txt (PIP) and conda-requirements.txt.  
 3. Load the model and predict the output in app.py.
-4. Dockerfile Automatically adds - **Logging, JWT Authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS)** 
+4. **BONUS**: Dockerfile Automatically adds - **Logging, JWT Authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS)** 
 5. Run
+    - > docker-compose up
+6. Test (Postman works well)
+    - > curl -X POST -d '{"param": "value"}' http://localhost:32768/predict
 
 ## Design
 - ### API Design
