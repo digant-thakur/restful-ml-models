@@ -12,18 +12,18 @@
 ## How to Use
 1. Copy your models into models directory.
     1. Clone repo
-     >git clone https://github.com/digant-thakur/restful-ml-models
+        >git clone https://github.com/digant-thakur/restful-ml-models
     2. Copy model(s)
-     >cp my_model.pkl restful-ml-models/models
+        >cp my_model.pkl restful-ml-models/models
 2. Add required libraries in requirements.txt (PIP) and conda-requirements.txt.  
 3. Load the model and predict the output in app.py.
 4. **BONUS**: Dockerfile Automatically adds - **Logging, JWT authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS).** 
 5. Run
-    > docker-compose up
+        > docker-compose up
 6. Test (Postman also works)
     1. Health check on **Path**: `/`
         > curl -k https://localhost:32768/
-    2. Get JWT auth token at **Path**: `/auth`. **Method**: `POST`. **Default credentials (in Body)**: `{"username": "user", "password": "pass"}`.
+    2. Get JWT auth token at <br />**Path**: `/auth`. **Method**: `POST`. **Default credentials (in Body)**: `{"username": "user", "password": "pass"}`.
         > curl -k --header "Content-Type: application/json" <br />
             --request POST <br />
             --data '{"username":"xyz","password":"xyz"}' <br />
