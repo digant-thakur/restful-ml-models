@@ -13,10 +13,10 @@ else
             https_value=$2
             if [ ${https_value} = "true" ]; then
                 rm -f /etc/nginx/sites-enabled/mlapp.conf
-                echo "USING HTTPS"
+                echo "USING HTTPS - Docker Compose Port 32768"
             elif [ ${https_value} = "false" ]; then
                 rm -f /etc/nginx/sites-enabled/mlapp-tls.conf
-                echo "NOT USING HTTPS"
+                echo "NOT USING HTTPS - Docker Compose Port 32767"
             else
                 echo "Invalid Option for https: $https_value" 
                 exit 1

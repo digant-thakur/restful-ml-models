@@ -1,0 +1,7 @@
+version: "3.0"
+services:
+  ml-app:
+    build: .
+    ports:
+      - "32767:80"
+      - "32768:443"

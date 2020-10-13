@@ -1,5 +1,5 @@
 # Deploy ML Models as REST API on a Production Ready Docker Container
-`**Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kuberenetes.`
+**Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kuberenetes.
 
 ## Features
 1. **Model Preloading** into memory for Performance enhancements
@@ -31,9 +31,9 @@
     > docker-compose up
 6. Test (Postman also works)
     1. Health Check
-    > curl localhost:32768/ 
+    > curl -k localhost:32768/ 
     2. Predict
-    > curl -X POST -d '{"param": "value"}' http://localhost:32768/predict
+    > curl -k -X POST -d '{"param": "value"}' http://localhost:32768/predict
 
 ## Design
 - ### API Design
@@ -46,10 +46,13 @@
 
 ## Options
 1. HTTPS
-    - By default HTTPS is On. To Turn off this behaviour, give option as: `-https false`
+    - By default HTTPS is Off. To Turn on this behaviour, give option as: `-https true` while running.
+    - `docker build -t mlapp .`
+    - `docker run mlapp -https true`
 2. Increase Timeout
-    - By default timeout is 60s. Based on the model complexity, sometimes prediction can take longer.<br /> To increase the timeout, give option as `-timeout 300s`
-
+    - By default timeout is 60s. Based on the model complexity, sometimes prediction can take longer.<br /> To increase the timeout, give option as `-timeout 300s` while running.
+    - `docker build -t mlapp .`
+    - `docker run mlapp -timeout 300`
 ### HTTPS - Bring Your Own Certicate
 - Configured to use TLS v1.2 and v1.3
 - You can replace `config/nginx/cert.crt` and `config/nginx/key.key` with your own certificate and key.
