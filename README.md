@@ -17,6 +17,15 @@ Deploy Production Ready ML Models as REST API on Docker and Kuberenetes. <br />
 4. Dockerfile Automatically adds - **Logging, JWT Authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS)** 
 5. Run
 
+## Design
+- ### API Design
+    - [System Design](illustrations/system_design#center) 
+
+- ### Docker Layers 
+    - User only manages Source Code + Dependencies (Light Gray).<br /> Other components are automatically added/managed by dockerfile.
+    - [Dockerfile Layering](illustrations/container_design.png#center)
+
+
 ## Options
 1. HTTPS
     - By default HTTPS is On. To Turn off this behaviour, give option as: **-https false**
@@ -27,5 +36,6 @@ Deploy Production Ready ML Models as REST API on Docker and Kuberenetes. <br />
 - Configured to use TLS v1.2 and v1.3
 - You can replace config/nginx/cert.crt and key.key with your own certificate and key.
 
-### 
+### JWT Authentication - 
+- Turned On by default, to turn off - comment @jwtrequired() decorator in app.py
 
