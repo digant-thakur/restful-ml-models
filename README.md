@@ -31,9 +31,9 @@
     > docker-compose up
 6. Test (Postman also works)
     1. Health Check
-    > curl -k localhost:32768/ 
+    > curl -k https://localhost:32768/ 
     2. Predict
-    > curl -k -X POST -d '{"param": "value"}' http://localhost:32768/predict
+    > curl -k -X POST -d '{"param": "value"}' https://localhost:32768/predict
 
 ## Design
 - ### API Design
@@ -46,9 +46,9 @@
 
 ## Options
 1. HTTPS
-    - By default HTTPS is Off. To Turn on this behaviour, give option as: `-https true` while running.
+    - By default HTTPS is on. To Turn off this behaviour, give option as: `-https false` while running.
     - `docker build -t mlapp .`
-    - `docker run mlapp -https true`
+    - `docker run mlapp -https false`
 2. Increase Timeout
     - By default timeout is 60s. Based on the model complexity, sometimes prediction can take longer.<br /> To increase the timeout, give option as `-timeout 300s` while running.
     - `docker build -t mlapp .`

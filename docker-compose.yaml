@@ -1,7 +1,13 @@
 version: "3.0"
 services:
   ml-app:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        - CONDA_VERSION=4.7.12 
+        - PYTHON_VERSION=3.7
+    image: mlapp
     ports:
       - "32767:80"
       - "32768:443"

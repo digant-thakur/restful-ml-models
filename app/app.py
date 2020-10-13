@@ -12,7 +12,7 @@ import datetime
 import logging
 from sklearn.preprocessing import StandardScaler 
 
-# Import Custom JQT In-Mem Implementation
+# Import Custom JWT In-Mem Implementation
 from security import authenticate, identity
 
 # Define Flask App, Secret, JWT Auth Implementation and Logging Config
@@ -54,7 +54,7 @@ mymodel = {}
 def load_model_into_memory():
     global mymodel
     mymodel['boston_housing'] = joblib.load('models/boston_model.pkl')
-    app.logger.info("Loaded Model {} into Memory")
+    app.logger.info("Loaded Model into Memory")
 
 # OPTIONAL: JWT AUTHENTICATION - Comment @jwt_required to TURN OFF 
 @jwt_required()

@@ -4,8 +4,7 @@ set -m
 echo "Started ENTRYPOINT script"
 
 if [ $# -eq 0 ]; then
-    echo -e "No Options Specified. Using Default Value: https = false, timeout = 60 (seconds)"
-    rm -f /etc/nginx/sites-enabled/mlapp-tls.conf
+    echo -e "No Options Specified"
 else
     while [ -n "$1" ]; do
         case "$1" in 
@@ -35,9 +34,8 @@ else
             shift
             ;;
         *)
-            echo "Option Not Recognised"
-            echo $1 $2
-            #shift
+            echo "Option Not Recognised. Overriding: $@"
+            exec "$@"
             ;;
         esac   
         shift
