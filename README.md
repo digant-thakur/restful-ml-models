@@ -1,5 +1,5 @@
 # Deploy ML Models as REST API on a Production Ready Docker Container
-**Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kuberenetes.
+`**Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kuberenetes.`
 
 ## Features
 1. **Model Preloading** into memory for Performance enhancements
@@ -46,14 +46,15 @@
 
 ## Options
 1. HTTPS
-    - By default HTTPS is On. To Turn off this behaviour, give option as: **-https false**
+    - By default HTTPS is On. To Turn off this behaviour, give option as: `-https false`
 2. Increase Timeout
-    - By default timeout is 60s. Based on the model complexity, sometimes prediction can take longer.<br /> To increase the timeout, give option as **-timeout 300s**
+    - By default timeout is 60s. Based on the model complexity, sometimes prediction can take longer.<br /> To increase the timeout, give option as `-timeout 300s`
 
 ### HTTPS - Bring Your Own Certicate
 - Configured to use TLS v1.2 and v1.3
-- You can replace config/nginx/cert.crt and key.key with your own certificate and key.
+- You can replace `config/nginx/cert.crt` and `config/nginx/key.key` with your own certificate and key.
 
 ### JWT Authentication - 
-- Turned On by default, to turn off - comment @jwtrequired() decorator in app.py
+- Turned On by default, to turn off - comment `@jwtrequired()` decorator in app.py
 
+#### Open to all feedback and suggestions
