@@ -11,29 +11,24 @@
 
 ## How to Use
 1. Copy your models into models directory.
-    1. Clone Repo
+    1. Clone repo
      >git clone https://github.com/digant-thakur/restful-ml-models
-    2. Copy Model
+    2. Copy model(s)
      >cp my_model.pkl restful-ml-models/models
 2. Add required libraries in requirements.txt (PIP) and conda-requirements.txt.  
 3. Load the model and predict the output in app.py.
-    > #app.py<br />
-    ........<br />
-    global mymodel<br />
-    mymodel['my_model_name'] = joblib.load('models/my_model.pkl')<br />
-    ........<br />
-    prediction = mymodel['my_model_name'].predict(input)<br />
-    response = {"Precition": prediction}<br />
-    return response<br />
-    ........<br />
-4. **BONUS**: Dockerfile Automatically adds - **Logging, JWT Authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS)** 
+4. **BONUS**: Dockerfile Automatically adds - **Logging, JWT authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS).** 
 5. Run
     > docker-compose up
 6. Test (Postman also works)
-    1. Health Check
-    > curl -k https://localhost:32768/ 
-    2. Predict
-    > curl -k -X POST -d '{"param": "value"}' https://localhost:32768/predict
+    1. Health check on **Path**: `/`
+    > curl -k https://localhost:32768/
+    2. Get JWT auth token at **Path**: `/auth`. **Method**: `POST`. **Default credentials (in Body)**: `{"username": "user", "password": "pass"}`.
+        > curl -k --header "Content-Type: application/json" <br />
+            --request POST <br />
+            --data '{"username":"xyz","password":"xyz"}' <br />
+            https://localhost:32768/auth
+    3. Prediction at **Path**: `/predict`. **Method**: `POST`. **Body**: `as per code`
 
 ## Design
 - ### API Design
@@ -46,7 +41,7 @@
 
 ## Options
 1. HTTPS
-    - By default HTTPS is on. To Turn off this behaviour, give option as: `-https false` while running.
+    - By default HTTPS is on. To Turn off this behaviour, give option as: `-https false` while running. (Host port changes to 32767)
     - `docker build -t mlapp .`
     - `docker run mlapp -https false`
 2. Increase Timeout
