@@ -2,7 +2,7 @@
 **Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kuberenetes.
 
 ## Features
-1. **Model Preloading** into memory for Performance enhancements
+1. **Model Preloading** into memory for performance enhancements
 2. **HTTPS** enabled. 
 3. Critical nGinx **Security Vulnerabilities Cleared.** 
 4. **JWT Authentication** Support.
@@ -15,11 +15,11 @@
         >git clone https://github.com/digant-thakur/restful-ml-models
     2. Copy model(s)
         >cp my_model.pkl restful-ml-models/models
-2. Add required libraries in requirements.txt (PIP) and conda-requirements.txt.  
+2. Add required libraries in requirements.txt (pip) and conda-requirements.txt.  
 3. Load the model and predict the output in app.py.
-4. **BONUS**: Dockerfile Automatically adds - **Logging, JWT authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS).** 
+4. Dockerfile Automatically adds - **Logging, JWT authentication, gUnicorn (AppServer), nGinx (WebServer), TLS (HTTPS).** 
 5. Run
-        > docker-compose up
+    > docker-compose up
 6. Test (Postman also works)
     1. Health check on **Path**: `/`
         > curl -k https://localhost:32768/

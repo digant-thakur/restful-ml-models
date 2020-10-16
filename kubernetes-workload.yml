@@ -1,0 +1,38 @@
+version: apps/v1
+kind: Deployment
+metadata:
+  name: "mlapp-deployment"
+  namespace: ml-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlapp
+  template:
+    metadata:
+      labels:
+        app: mlapp
+    containers:
+      - name: mlapp-pod 
+        image: mlapp:latest
+        ports: 
+        - containerPort: 80
+          name: HTTP
+          protocol: TCP
+        - containerPort: 443
+          name: HTTPS
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlapp
+spec:
+  selector:
+    app: mlapp
+  ports:
+  - port: <Port>
+    targetPort: <Target Port>
+Type: NodePort
+
+        
