@@ -23,12 +23,11 @@
 6. Test (Postman also works)
     1. Health check on **Path**: `/`
         > curl -k https://localhost:32768/
-    2. Get JWT auth token at <br />**Path**: `/auth`. **Method**: `POST`. **Credentials (in Body)**: `{"username": "user", "password": "pass"}`.
+    2. Get JWT auth token at <br />**Path**: `/auth`
         > curl -k --header "Content-Type: application/json" <br />
             --request POST <br />
             --data '{"username":"xyz","password":"xyz"}' <br />
             https://localhost:32768/auth
-    3. Prediction at **Path**: `/predict`. **Method**: `POST`. **Body**: `as per code`
 
 ## Design
 - ### API Design
