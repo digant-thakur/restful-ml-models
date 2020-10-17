@@ -1,5 +1,5 @@
 # Deploy ML Models as REST API on a Production Ready Docker Container
-**Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kuberenetes.
+**Tech Stack**: Python, Conda, Flask-RESTful, gUnicorn, nGinx, Docker, Kubernetes.
 
 ## Features
 1. **Model Preloading** into memory for performance enhancements
